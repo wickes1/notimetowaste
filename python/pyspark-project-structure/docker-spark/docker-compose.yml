@@ -1,0 +1,53 @@
+version: "3.3"
+services:
+  spark-master:
+    image: spark-docker-image-3.5.0:latest
+    ports:
+      - "9000:9000"
+      - "4040:4040"
+      - "4041:4041"
+      - "7077:7077"
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+    environment:
+      - SPARK_LOCAL_IP=spark-master
+      - SPARK_WORKLOAD=master
+  spark-worker-a:
+    image: spark-docker-image-3.5.0:latest
+    ports:
+      - "9001:9000"
+      - "17000:7000"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=1G
+      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_EXECUTOR_CORES=1
+      - SPARK_WORKLOAD=worker
+      - SPARK_LOCAL_IP=spark-worker-a
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+  spark-worker-b:
+    image: spark-docker-image-3.5.0:latest
+    ports:
+      - "9002:9000"
+      - "17001:7000"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=1G
+      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_EXECUTOR_CORES=1
+      - SPARK_WORKLOAD=worker
+      - SPARK_LOCAL_IP=spark-worker-b
+    volumes:
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
