@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "python-data-format"
+version = "0.1.0"
+description = ""
+authors = ["Wickes1 <27881570+wickes1@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "python_data_format"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastavro = "^1.9.4"
+orjson = "^3.9.14"
+ipython = "^8.21.0"
+ipykernel = "^6.29.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
