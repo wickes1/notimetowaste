@@ -12,6 +12,8 @@ fastavro = "^1.9.4"
 orjson = "^3.9.14"
 ipython = "^8.21.0"
 ipykernel = "^6.29.2"
+protobuf = "^4.25.3"
+jsonschema = "^4.21.1"
 
 
 [build-system]
