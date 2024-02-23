@@ -1,5 +1,19 @@
 # Kubernetes
 
+## Kustomize
+
+```bash
+# Only use kubectl apply -k <dir> for kustomize
+kubectl apply -k <dir>
+
+# kustomize
+kustomize init
+kustomize build . | kubectl apply -f -
+kustomize build base
+kustomize build .
+kustomize edit add resource *.yaml
+```
+
 ## Basic Application
 
 [Installation - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/)
