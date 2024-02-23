@@ -1,4 +1,4 @@
-# Terraform Docker
+# Terraform Command
 
 ```bash
 terraform init
@@ -12,4 +12,9 @@ terraform show
 terraform state list
 terraform output
 terraform destroy
+terraform state rm  $(terraform state list) # Remove all resources from state
 ```
+
+## References
+
+[Docker | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/tutorials/docker-get-started)
