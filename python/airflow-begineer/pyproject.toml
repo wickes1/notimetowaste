@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "airflow-begineer"
+version = "0.1.0"
+description = ""
+authors = ["Wickes1 <27881570+wickes1@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "airflow_begineer"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+apache-airflow = {version = "2.8.3", extras = ["celery"]}
+apache-airflow-providers-postgres = "^5.10.2"
+apache-airflow-providers-amazon = "^8.19.0"
+pandas = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

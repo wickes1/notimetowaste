@@ -1,0 +1,10 @@
+product_id,product_name,category_id,price
+1,Laptop,1,999.99
+2,Smartphone,1,699.99
+3,Tablet,1,399.99
+4,Headphones,2,149.99
+5,Keyboard,2,79.99
+6,Mouse,2,29.99
+7,Television,3,1499.99
+8,Speakers,3,299.99
+9,Printer,3,199.99
