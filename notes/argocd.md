@@ -67,3 +67,7 @@ kubectl apply -f longhorn-application.yaml
 # Passing values.yaml
 
 ```
+
+## Enable Kustomize with Helm
+
+[Kustomize - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/stable/user-guide/kustomize/#kustomizing-helm-charts)

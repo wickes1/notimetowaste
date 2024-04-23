@@ -2,6 +2,8 @@
 
 ## Kustomize
 
+[globbing/wildcards in &quot;resources&quot; field · Issue #119 · kubernetes-sigs/kustomize](https://github.com/kubernetes-sigs/kustomize/issues/119)
+
 ```bash
 # Only use kubectl apply -k <dir> for kustomize
 kubectl apply -k <dir>
@@ -9,6 +11,7 @@ kubectl apply -k <dir>
 # kustomize
 kustomize init
 kustomize build . | kubectl apply -f -
+kustomize build . --enable-helm | kubectl apply -f -
 kustomize build base
 kustomize build .
 kustomize edit add resource *.yaml
@@ -50,5 +53,9 @@ kubectl delete pod <pod_name> --grace-period=0 --force
 
 # Purge namespace
 kubectl delete namespace <namespace>
+
+# Delete all evicted pods
+export NAMESPACE=default
+kubectl get pod -n $NAMESPACE | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n $NAMESPACE
 
 ```

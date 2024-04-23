@@ -80,3 +80,11 @@ for vmid in "${vmids[@]}"; do
   qm destroy $vmid
 done
 ```
+
+## Error Debug
+
+- failed to set wall message, ignoring: transport endpoint is not connected call to reboot failed: transport endpoint is not connected
+
+```bash
+systemctl --force --force reboot
+```
