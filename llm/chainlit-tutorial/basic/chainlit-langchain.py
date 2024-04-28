@@ -3,7 +3,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import Runnable
 from langchain.schema.runnable.config import RunnableConfig
-from langchain_community.llms import Ollama
+from langchain_community.llms.ollama import Ollama
 
 
 @cl.on_chat_start
