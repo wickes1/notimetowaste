@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "chainlit-tutorial"
+version = "0.1.0"
+description = ""
+authors = ["Wickes1 <27881570+wickes1@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "chainlit_tutorial"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+chainlit = "^1.0.505"
+openai = "^1.23.6"
+langchain = "^0.1.16"
+llama-index = "^0.10.32"
+llama-index-llms-ollama = "^0.1.2"
+llama-index-embeddings-ollama = "^0.1.2"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
