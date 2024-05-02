@@ -1,0 +1,16 @@
+services:
+    db:
+        image: mongo:7.0.1
+        container_name: myAPIdb
+        restart: always
+        ports:
+            - 27017:27017
+        env_file:
+            - .env
+        volumes:
+            - type: volume
+              source: my_api_db_data
+              target: /data/db
+
+volumes:
+    my_api_db_data:
