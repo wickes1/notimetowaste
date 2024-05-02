@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  public: {
+  nextjs_supabase_todos: {
     Tables: {
       todos: {
         Row: {
