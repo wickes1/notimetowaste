@@ -4,7 +4,8 @@
 
 - Next.js 14
 - Next.js Server Actions
-- Next.js Optimistic Update
+- Next.js Optimistic Update (useOptimistic)
+- Next.js Pending Stats (useFormStatus)
 - Supabase
 - Supabase Row Level Security
 - Supabase Email Auth

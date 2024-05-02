@@ -9,7 +9,6 @@ import { Todo } from "@/types/custom";
 import { Trash2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { TodoOptimisticUpdate } from "./todo-list";
-import { useState } from "react";
 
 export function TodoItem({
 	todo,
@@ -33,21 +32,26 @@ export function TodoCard({
 	optimisticUpdate: TodoOptimisticUpdate;
 }) {
 	const { pending } = useFormStatus();
-	const [checked, setChecked] = useState(Boolean(todo.is_complete));
 
 	return (
 		<Card className={cn("w-full", pending && "opacity-50")}>
 			<CardContent className="flex items-start gap-3 p-3">
 				<span className="size-10 flex items-center justify-center">
 					<Checkbox
-						disabled={pending}
-						checked={checked}
-						onCheckedChange={async val => {
-							if (val === "indeterminate") return;
-							setChecked(val);
+						// disabled={pending}
+						type="submit"
+						checked={Boolean(todo.is_complete)}
+						formAction={async () => {
+							optimisticUpdate({
+								action: "update",
+								todo: {
+									...todo,
+									is_complete: !todo.is_complete
+								}
+							});
 							await updateTodo({
 								...todo,
-								is_complete: val
+								is_complete: !todo.is_complete
 							});
 						}}
 					/>
@@ -56,7 +60,7 @@ export function TodoCard({
 					{todo.task}
 				</p>
 				<Button
-					disabled={pending}
+					// disabled={pending}
 					formAction={async data => {
 						optimisticUpdate({ action: "delete", todo });
 						await deleteTodo(todo.id);
