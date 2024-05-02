@@ -1,12 +1,13 @@
-import { auth, signIn } from "@/auth";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import UserButton from "./UserButton";
-import getSession from "@/lib/getSession";
+"use client";
 
-export default async function NavBar() {
-  const session = await getSession();
-  const user = session?.user;
+import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
+import UserButton from "./UserButton";
+import { Button } from "./ui/button";
+
+export default function NavBar() {
+  const session = useSession();
+  const user = session?.data?.user;
 
   return (
     <header className="sticky top-0 bg-background px-3 shadow-sm">
@@ -14,7 +15,8 @@ export default async function NavBar() {
         <Link href="/" className="font-bold">
           Next-Auth v5 Tutorial
         </Link>
-        {user ? <UserButton user={user} /> : <SignInButton />}
+        {user && <UserButton user={user} />}
+        {!user && session.status !== "loading" && <SignInButton />}
       </nav>
     </header>
   );
@@ -22,16 +24,13 @@ export default async function NavBar() {
 
 function SignInButton() {
   return (
-    <form
-      action={async () => {
-        // Pros:
-        //  it will redirect you back to the current page after signing in
-        //  it will not show the login url in preview
-        "use server";
-        await signIn();
+    <Button
+      type="submit"
+      onClick={() => {
+        signIn();
       }}
     >
-      <Button type="submit">Sign in</Button>
-    </form>
+      Sign in
+    </Button>
   );
 }

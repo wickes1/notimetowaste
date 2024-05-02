@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  // TODO: Redirect non-admin users
   const session = await getSession()
   const user = session?.user;
 

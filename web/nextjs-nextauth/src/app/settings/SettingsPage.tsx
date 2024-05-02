@@ -2,22 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { UpdateProfileValues, updateProfileSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { User } from "next-auth";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "./actions";
-import { User } from "next-auth";
-import { userAgent } from "next/server";
 
 interface SettingsPageProps {
   user: User;
@@ -25,6 +25,7 @@ interface SettingsPageProps {
 
 export default function SettingsPage({ user }: SettingsPageProps) {
   const { toast } = useToast();
+  const session = useSession();
 
   const form = useForm<UpdateProfileValues>({
     resolver: zodResolver(updateProfileSchema),
@@ -34,6 +35,7 @@ export default function SettingsPage({ user }: SettingsPageProps) {
   async function onSubmit(data: UpdateProfileValues) {
     try {
       await updateProfile(data);
+      session.update();
       toast({ description: "Profile updated." });
     } catch (error) {
       toast({
