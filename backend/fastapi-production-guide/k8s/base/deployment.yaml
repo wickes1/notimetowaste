@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        app: demo
+    name: demo
+spec:
+    replicas: 3 # Scale up to 3 instances of the container
+    selector:
+        matchLabels:
+            app: demo
+    template:
+        metadata:
+            labels:
+                app: demo
+        spec:
+            containers:
+                - name: demo
+                  image: demo:1.0.0
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 8000
+                        protocol: TCP
+                  envFrom:
+                      - secretRef:
+                            name: demo-secret
+                  resources:
+                      limits:
+                          cpu: "2"
+                          memory: 2Gi
+                      requests:
+                          cpu: "1"
+                          memory: 1Gi

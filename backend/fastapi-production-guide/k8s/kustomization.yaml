@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: default
+
+resources:
+- base
+
+images:
+- name: demo
+  newName: fastapi-todo
+  newTag: v1.0.0
+
+secretGenerator:
+- envs:
+  - .env
+  name: demo-secret
