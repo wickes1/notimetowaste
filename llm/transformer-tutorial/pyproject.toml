@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "transformer-tutorial"
+version = "0.1.0"
+description = ""
+authors = ["Wickes1 <27881570+wickes1@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "transformer_tutorial"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+ipykernel = "^6.29.4"
+transformers = "^4.40.1"
+ipywidgets = "^8.1.2"
+datasets = "^2.19.0"
+
+
+[[tool.poetry.source]]
+name = "pytorch-gpu-src"
+url = "https://download.pytorch.org/whl/rocm6.0"
+priority = "explicit"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
