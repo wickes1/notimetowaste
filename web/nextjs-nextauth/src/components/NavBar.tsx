@@ -15,6 +15,9 @@ export default function NavBar() {
         <Link href="/" className="font-bold">
           Next-Auth v5 Tutorial
         </Link>
+        <Link href="/playground" className="cursor-pointer">
+          Playground
+        </Link>
         {user && <UserButton user={user} />}
         {!user && session.status !== "loading" && <SignInButton />}
       </nav>
